@@ -36,9 +36,8 @@ const Footer = () => {
                 target="_blank"
                 rel="noreferrer"
               >
-                <li className="w-8 h-8 bg-primeColor text-gray-100 hover:text-white cursor-pointer text-xl rounded-full flex justify-center items-center hover:bg-black duration-300">
-                  <FaFacebook />
-                </li>
+
+                  
               </a>
             
             </ul>
