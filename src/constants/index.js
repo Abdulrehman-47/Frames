@@ -61,7 +61,7 @@ export const SplOfferData = [
   {
     _id: "203",
     img: 'https://firebasestorage.googleapis.com/v0/b/trakkerz-c2667.appspot.com/o/Jersey%20Framespk%2FProducts%20iamges%2FCR7%20FRAMES%2FUntitled%20design%20(17).png?alt=media&token=66ba5c0a-fd11-47ca-a961-649f4f9cf621',
-    productName: "Headphones",
+    productName: "CR7",
     price: "12999.00",
     color: "White & Yellow",
     badge: true,
