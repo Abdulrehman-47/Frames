@@ -6,6 +6,8 @@ import {
   Route,
   ScrollRestoration,
 } from "react-router-dom";
+import Poster from "./components/home/Poster/Poster";
+
 import Footer from "./components/home/Footer/Footer";
 import FooterBottom from "./components/home/Footer/FooterBottom";
 import Header from "./components/home/Header/Header";
@@ -43,6 +45,8 @@ const router = createBrowserRouter(
         <Route path="/shop" element={<Shop />}></Route>
         <Route path="/about" element={<About />}></Route>
         <Route path="/contact" element={<Contact />}></Route>
+        <Route path="/poster" element={<Poster />}></Route>
+
         
         {/* ==================== Header Navlink End here ===================== */}
         
@@ -64,3 +68,12 @@ function App() {
 }
 
 export default App;
+
+
+
+
+
+
+
+
+
