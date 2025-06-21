@@ -8,8 +8,8 @@ const ProductInfo = ({ productInfo }) => {
   const [selectedOption, setSelectedOption] = useState("");
   const [error, setError] = useState("");
   const [displayPrice, setDisplayPrice] = useState(0);
+  const [showPopup, setShowPopup] = useState(false);
 
-  // Update price on load
   useEffect(() => {
     if (productInfo?.price) {
       setDisplayPrice(Number(productInfo.price).toFixed(2));
@@ -35,6 +35,9 @@ const ProductInfo = ({ productInfo }) => {
         frameType: selectedOption,
       })
     );
+
+    setShowPopup(true);
+    setTimeout(() => setShowPopup(false), 2500);
   };
 
   const handleOptionSelect = (option) => {
@@ -49,24 +52,32 @@ const ProductInfo = ({ productInfo }) => {
     }
   };
 
-  // Check if product ID falls under Poster Bundle range
   const isPosterBundle =
     Number(productInfo?._id) >= 2001 && Number(productInfo?._id) <= 2006;
 
   return (
-    <div className="flex flex-col gap-5">
+    <div className="flex flex-col gap-5 relative">
+      {/* Popup Message */}
+      <div
+        className={`fixed top-20 lg:top-48 left-1/2 -translate-x-1/2 right-auto 
+          bg-green-600 text-white px-5 py-3 rounded-md shadow-md z-50 
+          transition-opacity duration-500 ${
+            showPopup ? "opacity-100" : "opacity-0 pointer-events-none"
+          }`}
+      >
+        Item added to cart!
+      </div>
+
       <h2 className="text-4xl font-semibold">{productInfo.productName}</h2>
       <p className="text-xl font-semibold">Rs {displayPrice}</p>
       <p className="text-base text-gray-600">{productInfo.des}</p>
       <p className="text-sm">Be the first to leave a review.</p>
 
-      {/* Size or Color */}
       <p className="font-medium text-lg">
         <span className="font-normal">{isPosterBundle ? "Size:" : "Colors:"}</span>{" "}
         {productInfo.color}
       </p>
 
-      {/* Frame Type Dropdown (Only for non-Poster Bundles) */}
       {!isPosterBundle && (
         <div className="relative">
           <button
@@ -104,10 +115,8 @@ const ProductInfo = ({ productInfo }) => {
         </div>
       )}
 
-      {/* Error Message */}
       {error && <p className="text-red-500 text-sm mt-1">{error}</p>}
 
-      {/* CTA Button */}
       {isPosterBundle ? (
         <a
           href={`https://wa.me/923028557208?text=${encodeURIComponent(
