@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
 import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
-import emailjs from "@emailjs/browser";
 
 const Payment = () => {
   const [formData, setFormData] = useState({
@@ -26,7 +25,7 @@ const Payment = () => {
     setTimeout(() => setShowPopup(false), 3000);
   };
 
-  const handleEmailSend = () => {
+  const handleSubmit = () => {
     const { fullName, email, address, phoneNumber, postalCode } = formData;
 
     if (!fullName || !email || !address || !phoneNumber || !postalCode) {
@@ -39,55 +38,22 @@ const Payment = () => {
       return;
     }
 
-    const cartMessage = cartItems
-      .map(
-        (item) =>
-          `Product Name: ${item.name || item.title || item.productName || "Unknown"}
-Frame Type: ${item.frameType || "None"}
-Quantity: ${item.quantity}
-Price Rs: ${item.price}
-Product Image: ${item.image || "No Image Available"}`
-      )
-      .join("\n\n");
+    // You can replace this with API integration or anything else
+    console.log("Order submitted:", {
+      ...formData,
+      cartItems,
+      totalAmount: cartItems.reduce((total, item) => total + item.price * item.quantity, 0),
+    });
 
-    const totalAmount = cartItems.reduce(
-      (total, item) => total + item.price * item.quantity,
-      0
-    );
+    showPopupMessage("Order submitted successfully!");
 
-    const templateParams = {
-      fullName,
-      email,
-      address,
-      phoneNumber,
-      postalCode,
-      cartDetails: cartMessage,
-      totalAmount,
-    };
-
-    emailjs
-      .send(
-        "service_tqthvbc",
-        "template_kgvdkw2",
-        templateParams,
-        "fkP2cjv9T9zGpTRR_"
-      )
-      .then(
-        () => {
-          showPopupMessage("Order email sent successfully!");
-          setFormData({
-            fullName: "",
-            email: "",
-            address: "",
-            phoneNumber: "",
-            postalCode: "",
-          });
-        },
-        (error) => {
-          console.error("FAILED...", error);
-          showPopupMessage("Something went wrong. Please try again.");
-        }
-      );
+    setFormData({
+      fullName: "",
+      email: "",
+      address: "",
+      phoneNumber: "",
+      postalCode: "",
+    });
   };
 
   return (
@@ -117,7 +83,7 @@ Product Image: ${item.image || "No Image Available"}`
           </div>
 
           <button
-            onClick={handleEmailSend}
+            onClick={handleSubmit}
             className="w-52 h-10 bg-primeColor text-white text-lg mt-6 hover:bg-black duration-300"
           >
             Complete Purchase
