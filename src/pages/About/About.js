@@ -5,23 +5,48 @@ import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
 const About = () => {
   const location = useLocation();
   const [prevLocation, setPrevLocation] = useState("");
+
   useEffect(() => {
-    setPrevLocation(location.state.data);
+    setPrevLocation(location.state?.data || "");
   }, [location]);
+
   return (
     <div className="max-w-container mx-auto px-4">
       <Breadcrumbs title="About" prevLocation={prevLocation} />
       <div className="pb-10">
-      <h1 className="max-w-[600px] text-base text-lightText mb-2 leading-[1.8]">
+        <h1 className="max-w-[700px] text-base text-lightText mb-6 leading-7 space-y-4">
+          <p className="text-xl font-semibold text-primeColor mb-2">JerseyFrames.pk</p>
+          <p>
+            At <strong>JerseyFrames.pk</strong>, we craft full-size framed jerseys that bring your favorite sports legends to life — complete with real, hand-signed autographs done by our professional in-house signature team.
+          </p>
+          <p>
+            Every jersey is framed in a premium 18x24 setup, featuring a complete shirt, carefully styled and signed using marker — giving it the feel and flair of authentic memorabilia, without the sky-high price tag.
+          </p>
 
-          <span className="text-primeColor font-semibold text-lg">jerseyframes.pk's</span>{" "}
-          The Ultimate Destination for Signed & Unsigned Sports Jersey's
+          <hr className="my-4 border-gray-300" />
 
-          At Jersey Frames, we bring sports fans closer to their passion by offering a premium collection of signed and unsigned jerseys from top football and cricket players worldwide. Whether you're a die-hard supporter looking for an autographed piece from your favorite athlete or simply want a beautifully framed jersey to showcase your team pride, we've got you covered.
+          <p className="text-lg font-semibold">What Makes Us Stand Out</p>
+          <ul className="list-disc pl-5">
+            <li>✅ Full-Size Jerseys — not cutouts or half-displays</li>
+            <li>✅ Hand-Signed by Our Signature Team — using permanent marker for a real, bold finish</li>
+            <li>✅ Professionally Framed (18x24 inches) — clean, durable, and ready to hang</li>
+            <li>✅ Built for Fans — affordable, striking, and passion-driven</li>
+            <li>✅ Nationwide Delivery Across Pakistan</li>
+          </ul>
 
-          Every signed item comes with a certificate of authenticity, giving you the confidence to own a genuine piece of sporting history. Whether you're a collector, a fan, or looking for the perfect gift, Jersey Frames delivers the best in sports memorabilia.
+          <hr className="my-4 border-gray-300" />
 
-           Own a piece of history – Frame your passion with Jersey Frames! 
+          <p className="text-lg font-semibold">⚠ Note on Authenticity</p>
+          <p>
+            While our products are not officially licensed and the signatures are not from the original athletes, each jersey is hand-signed by professionals who specialize in signature-style presentation — giving you the look and presence of a high-end piece at an accessible price.
+          </p>
+
+          <hr className="my-4 border-gray-300" />
+
+          <p className="text-lg font-semibold">🖤 Built for True Fans</p>
+          <p>
+            JerseyFrames.pk was created for those who want to feel closer to the game. Whether you’re a lifelong fan or gifting someone special, our jersey frames let you honor the players you love — in style.
+          </p>
         </h1>
         <Link to="/shop">
           <button className="w-52 h-10 bg-primeColor text-white hover:bg-black duration-300">

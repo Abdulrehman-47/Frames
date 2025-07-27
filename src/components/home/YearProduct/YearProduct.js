@@ -10,7 +10,7 @@ const YearProduct = () => {
       <div className="w-full h-80 mb-20 bg-[#f3f3f3] md:bg-transparent relative font-titleFont">
         <Image
           className="w-full h-full object-cover hidden md:inline-block"
-          imgSrc={'https://firebasestorage.googleapis.com/v0/b/trakkerz-c2667.appspot.com/o/Jersey%20Framespk%2FProducts%20iamges%2FProduct%20of%20the%20year%2FUntitled%20design%20(21).png?alt=media&token=7935b70f-6e93-42b2-ac9e-630358a341f6'}
+          imgSrc={'https://res.cloudinary.com/diisa3hxq/image/upload/v1753532041/productOfTheYear_lxewtg.png'}
         />
         <div className="w-full md:w-2/3 xl:w-1/2 h-80 absolute px-4 md:px-0 top-0 right-0 flex flex-col items-start gap-6 justify-center">
           <h1 className="text-3xl font-semibold text-primeColor">

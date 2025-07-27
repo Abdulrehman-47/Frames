@@ -4,9 +4,9 @@ import Product from "../../home/Products/Product";
 import { paginationItems } from "../../../constants";
 
 const categories = {
-  bestSeller: [1003,1002,1001,1004,],
-  newArrivals: [1010,1011,1012,1013,1014],
-  featured: [ 1005,1006,], // Ensure order is maintained
+  bestSeller: [1003, 1002, 1001, 1004],
+  newArrivals: [1010, 1011, 1012, 1013, 1014],
+  featured: [1005, 1006],
 };
 
 const Items = ({ currentItems }) => {
@@ -20,6 +20,7 @@ const Items = ({ currentItems }) => {
               img={item.img}
               productName={item.productName}
               price={item.price}
+              oldPrice={item.oldPrice} // ✅ Pass old price
               color={item.color}
               badge={item.badge}
               des={item.des}
@@ -52,11 +53,10 @@ const Pagination = ({ itemsPerPage }) => {
     if (category === "All") {
       setFilteredItems(paginationItems);
     } else {
-      const categoryIds = categories[category]; // Get the exact order of IDs
+      const categoryIds = categories[category];
       const filtered = paginationItems
         .filter((item) => categoryIds.includes(item._id))
-        .sort((a, b) => categoryIds.indexOf(a._id) - categoryIds.indexOf(b._id)); // Sort by category order
-
+        .sort((a, b) => categoryIds.indexOf(a._id) - categoryIds.indexOf(b._id));
       setFilteredItems(filtered);
     }
     setItemOffset(0);
@@ -69,7 +69,7 @@ const Pagination = ({ itemsPerPage }) => {
       <div className="flex items-center gap-2 md:gap-6 mb-8 mt-4 md:mt-0">
         <div className="flex items-center gap-2 text-base text-[#767676] relative">
           <label className="block">Sort by:</label>
-          
+
           {/* Custom Dropdown */}
           <div
             className="relative w-32 md:w-52 cursor-pointer"
@@ -140,7 +140,8 @@ const Pagination = ({ itemsPerPage }) => {
         />
 
         <p className="text-base font-normal text-lightText">
-          Products from {itemStart} to {Math.min(endOffset, filteredItems.length)} of {filteredItems.length}
+          Products from {itemStart} to{" "}
+          {Math.min(endOffset, filteredItems.length)} of {filteredItems.length}
         </p>
       </div>
     </div>

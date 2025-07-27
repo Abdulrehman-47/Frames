@@ -54,7 +54,7 @@ const NewArrivals = () => {
       <div className="px-2">
           <Product
             _id="2001"
-            img={'https://firebasestorage.googleapis.com/v0/b/trakkerz-c2667.appspot.com/o/Jersey%20Framespk%2FProducts%20iamges%2FPosters%2FPoster%201.png?alt=media&token=5b4b932d-aa6d-44b6-ab38-e3dd8559d81c'}
+            img={'https://res.cloudinary.com/diisa3hxq/image/upload/v1753518551/Poster_1_tqyswt.png'}
             productName="Single Poster"
             price="300.00"
             color="4x6 & A4"
@@ -65,7 +65,7 @@ const NewArrivals = () => {
         <div className="px-2">
           <Product
             _id="2002"
-            img={'https://firebasestorage.googleapis.com/v0/b/trakkerz-c2667.appspot.com/o/Jersey%20Framespk%2FProducts%20iamges%2FPosters%2FPoster%202.png?alt=media&token=725a5b45-724d-49c1-8861-b3ffcd7750f1'}
+            img={'https://res.cloudinary.com/diisa3hxq/image/upload/v1753518553/Poster_2_znfysv.png'}
             productName="Poster Bundle 1"
             price="750.00"
             color="4: 4x6 posters"
@@ -76,7 +76,7 @@ const NewArrivals = () => {
         <div className="px-2">
           <Product
             _id="2003"
-            img={'https://firebasestorage.googleapis.com/v0/b/trakkerz-c2667.appspot.com/o/Jersey%20Framespk%2FProducts%20iamges%2FPosters%2FPoster%203.png?alt=media&token=b21d2943-9825-499e-a4e5-e9b66b203369'}
+            img={'https://res.cloudinary.com/diisa3hxq/image/upload/v1753518554/Poster_3_cxhfas.png'}
             productName="Poster Bundle 2"
             price="1500.00"
             color="4: A4 posters"
@@ -87,7 +87,7 @@ const NewArrivals = () => {
         <div className="px-2">
           <Product
             _id="2004"
-            img={'https://firebasestorage.googleapis.com/v0/b/trakkerz-c2667.appspot.com/o/Jersey%20Framespk%2FProducts%20iamges%2FPosters%2FPoster%204.png?alt=media&token=60f31be8-869c-4b72-ac26-f5cd053de63e'}
+            img={'https://res.cloudinary.com/diisa3hxq/image/upload/v1753518556/Poster_4_uwpj8o.png'}
             productName="Poster Bundle 3"
             price="3000.00"
             color="4:A4 & 4:4x6"
@@ -98,7 +98,7 @@ const NewArrivals = () => {
         <div className="px-2">
           <Product
             _id="2005"
-            img={'https://firebasestorage.googleapis.com/v0/b/trakkerz-c2667.appspot.com/o/Jersey%20Framespk%2FProducts%20iamges%2FPosters%2FPoster%202.png?alt=media&token=725a5b45-724d-49c1-8861-b3ffcd7750f1'}
+            img={'https://res.cloudinary.com/diisa3hxq/image/upload/v1753518553/Poster_2_znfysv.png'}
             productName="Poster Bundle 4"
             price="3000.00"
             color="10: 4x6 posters"
@@ -110,7 +110,7 @@ const NewArrivals = () => {
         <div className="px-2">
           <Product
             _id="2006"
-            img={'https://firebasestorage.googleapis.com/v0/b/trakkerz-c2667.appspot.com/o/Jersey%20Framespk%2FProducts%20iamges%2FPosters%2FPoster%201.png?alt=media&token=5b4b932d-aa6d-44b6-ab38-e3dd8559d81c'}
+            img={'https://res.cloudinary.com/diisa3hxq/image/upload/v1753518551/Poster_1_tqyswt.png'}
             productName="Poster Bundle 5"
             price="4500.00"
             color="10:A4 posters"
@@ -122,9 +122,10 @@ const NewArrivals = () => {
         <div className="px-2">
           <Product
             _id="100001"
-            img={'https://firebasestorage.googleapis.com/v0/b/trakkerz-c2667.appspot.com/o/Jersey%20Framespk%2FProducts%20iamges%2FCR7%20FRAMES%2FUntitled%20design%20(11).png?alt=media&token=a98f73a8-7881-4c53-8b74-2bea0084279b'}
+            img="https://res.cloudinary.com/diisa3hxq/image/upload/v1753519831/bestSellerOne_zy5hrj.png"
             productName="CR7 Frame"
-            price="12999.00"
+            oldPrice="12999.00"
+            price="7999.00"
             color="Yellow"
             badge={true}
             des="Cristiano Ronaldo wears Al Nassr’s yellow shirt, symbolizing pride, passion, and excellence in Saudi Arabian football history."
@@ -133,9 +134,10 @@ const NewArrivals = () => {
         <div className="px-2">
           <Product
             _id="100002"
-            img={'https://firebasestorage.googleapis.com/v0/b/trakkerz-c2667.appspot.com/o/Jersey%20Framespk%2FProducts%20iamges%2FMessi%20FRAMES%2FUntitled%20design%20(13).png?alt=media&token=d0256416-375a-47ec-8c84-ade20e2006c4'}
+            img={'https://res.cloudinary.com/diisa3hxq/image/upload/v1753519288/spfTwo_nyg4kn.png'}
             productName="Messi Frame"
-            price="12999.00"
+            oldPrice="12999.00"
+            price="7999.00"
             color="White"
             badge={true}
             des="Lionel Messi wears Argentina’s iconic white shirt, representing greatness, legacy, and his unforgettable triumphs in world football history."
@@ -144,9 +146,10 @@ const NewArrivals = () => {
         <div className="px-2">
           <Product
             _id="100003"
-            img={'https://firebasestorage.googleapis.com/v0/b/trakkerz-c2667.appspot.com/o/Jersey%20Framespk%2FProducts%20iamges%2FMessi%20FRAMES%2FUntitled%20design%20(12).png?alt=media&token=1a5e60ee-200e-4bac-ae63-151e4420ef32'}
+            img={'https://res.cloudinary.com/diisa3hxq/image/upload/v1753519285/spfOne_wpwuwm.png'}
             productName="Messi Frame"
-            price="12999.00"
+            oldPrice="12999.00"
+            price="7999.00"
             color="Dusty Pink"
             badge={true}
             des="Lionel Messi wears a stylish dusty pink shirt, blending elegance and sportiness, making headlines with his iconic fashion choices.."
@@ -155,9 +158,10 @@ const NewArrivals = () => {
         <div className="px-2">
           <Product
             _id="100004"
-            img={'https://firebasestorage.googleapis.com/v0/b/trakkerz-c2667.appspot.com/o/Jersey%20Framespk%2FProducts%20iamges%2FNew%20Arrivals%2FUntitled%20design%20(14).png?alt=media&token=6d8ab0f9-747e-4981-bbb4-f98558ca4cfa'}
+            img={'https://res.cloudinary.com/diisa3hxq/image/upload/v1753520726/Mbappe_2_ekhqly.png'}
             productName="Mbappe Frame"
-            price="12999.00"
+              oldPrice="12999.00"
+            price="7999.00"
             color="Orange"
             badge={false}
             des="Kylian Mbappé shines in an orange shirt, showcasing his dynamic style, confidence, and electrifying presence on and off-field."
@@ -166,9 +170,10 @@ const NewArrivals = () => {
         <div className="px-2">
           <Product
             _id="100005"
-            img={'https://firebasestorage.googleapis.com/v0/b/trakkerz-c2667.appspot.com/o/Jersey%20Framespk%2FProducts%20iamges%2FNew%20Arrivals%2FUntitled%20design%20(15).png?alt=media&token=65a6bb7d-b90f-4329-9fe5-494b0f011302'}
+            img={'https://res.cloudinary.com/diisa3hxq/image/upload/v1753531142/Untitled_design_15_yt2ggt.png'}
             productName="Davied Beckham"
-            price="13999.00"
+              oldPrice="12999.00"
+            price="7999.00"
             color="Black"
             badge={false}
             des="David Beckham looks effortlessly stylish in a black shirt, embodying elegance, confidence, and timeless fashion both on and off the field."

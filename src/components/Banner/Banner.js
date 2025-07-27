@@ -98,10 +98,10 @@ const Banner = () => {
     <div className="w-full bg-white">
       <Slider {...settings}>
         <div>
-          <Image imgSrc='https://firebasestorage.googleapis.com/v0/b/trakkerz-c2667.appspot.com/o/Jersey%20Framespk%2FBanner%2FbannerImgOne.webp?alt=media&token=a157bfe4-5f40-4387-bf00-91271b48b937' />
+          <Image imgSrc='https://res.cloudinary.com/diisa3hxq/image/upload/v1753517465/bannerImgOne_cc2mll.webp' />
         </div>
         <div>
-          <Image imgSrc='https://firebasestorage.googleapis.com/v0/b/trakkerz-c2667.appspot.com/o/Jersey%20Framespk%2FBanner%2FbannerImgTwo.webp?alt=media&token=ef776b06-5a95-47fd-aab6-3f4a0f434f68' />
+          <Image imgSrc='https://res.cloudinary.com/diisa3hxq/image/upload/v1753517614/bannerImgTwo_xpekuc.webp' />
         </div>
       </Slider>
     </div>

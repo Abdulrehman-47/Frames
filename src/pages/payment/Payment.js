@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useSelector } from "react-redux";
+import emailjs from "@emailjs/browser";
 import Breadcrumbs from "../../components/pageProps/Breadcrumbs";
 
 const Payment = () => {
@@ -7,12 +8,14 @@ const Payment = () => {
     fullName: "",
     email: "",
     address: "",
+    city: "",
+    apartment: "",
     phoneNumber: "",
     postalCode: "",
   });
+
   const [popupMessage, setPopupMessage] = useState("");
   const [showPopup, setShowPopup] = useState(false);
-
   const cartItems = useSelector((state) => state.orebiReducer.products);
 
   const handleChange = (e) => {
@@ -26,10 +29,10 @@ const Payment = () => {
   };
 
   const handleSubmit = () => {
-    const { fullName, email, address, phoneNumber, postalCode } = formData;
+    const { fullName, email, address, city, phoneNumber } = formData;
 
-    if (!fullName || !email || !address || !phoneNumber || !postalCode) {
-      showPopupMessage("Please fill in all fields.");
+    if (!fullName || !email || !address || !city || !phoneNumber) {
+      showPopupMessage("Please fill in all required fields.");
       return;
     }
 
@@ -38,22 +41,50 @@ const Payment = () => {
       return;
     }
 
-    // You can replace this with API integration or anything else
-    console.log("Order submitted:", {
-      ...formData,
-      cartItems,
-      totalAmount: cartItems.reduce((total, item) => total + item.price * item.quantity, 0),
-    });
+    // Generate plain text order summary with image URLs
+    const orderSummaryText = cartItems.map((item, index) => (
+      `\n---\nProduct ${index + 1}:\n` +
+      `Name: ${item.name || item.title}\n` +
+      `Price: Rs ${item.price}\n` +
+      `Quantity: ${item.quantity}\n` +
+      `Frame Type: ${item.frameType || 'None'}\n` +
+      `Subtotal: Rs ${item.price * item.quantity}\n` +
+      `Image URL: ${item.image || "No image available"}`
+    )).join("\n");
 
-    showPopupMessage("Order submitted successfully!");
+    const totalAmount = cartItems.reduce((total, item) => total + item.price * item.quantity, 0);
 
-    setFormData({
-      fullName: "",
-      email: "",
-      address: "",
-      phoneNumber: "",
-      postalCode: "",
-    });
+    const templateParams = {
+      fullName: formData.fullName,
+      email: formData.email,
+      address: formData.address,
+      city: formData.city,
+      apartment: formData.apartment,
+      postalCode: formData.postalCode,
+      phoneNumber: formData.phoneNumber,
+      orderSummary: `${orderSummaryText}\n\nTotal Amount: Rs ${totalAmount}`
+    };
+
+    emailjs
+      .send("service_9l1192g", "template_rszwhqh", templateParams, "D-DOQ5mTm-RpvB_oW")
+      .then(
+        () => {
+          showPopupMessage("Order submitted successfully!");
+          setFormData({
+            fullName: "",
+            email: "",
+            address: "",
+            city: "",
+            apartment: "",
+            phoneNumber: "",
+            postalCode: "",
+          });
+        },
+        (err) => {
+          console.error("Email sending failed:", err);
+          showPopupMessage("Failed to send order. Try again.");
+        }
+      );
   };
 
   return (
@@ -77,8 +108,10 @@ const Payment = () => {
               <input type="text" name="fullName" placeholder="Full Name" value={formData.fullName} onChange={handleChange} className="w-full p-2 border rounded" required />
               <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} className="w-full p-2 border rounded" required />
               <input type="text" name="address" placeholder="Address" value={formData.address} onChange={handleChange} className="w-full p-2 border rounded" required />
+              <input type="text" name="apartment" placeholder="Apartment, suite, etc. (optional)" value={formData.apartment} onChange={handleChange} className="w-full p-2 border rounded" />
+              <input type="text" name="city" placeholder="City" value={formData.city} onChange={handleChange} className="w-full p-2 border rounded" required />
+              <input type="text" name="postalCode" placeholder="Postal Code (optional)" value={formData.postalCode} onChange={handleChange} className="w-full p-2 border rounded" />
               <input type="text" name="phoneNumber" placeholder="Phone Number" value={formData.phoneNumber} onChange={handleChange} className="w-full p-2 border rounded" required />
-              <input type="text" name="postalCode" placeholder="Postal Code" value={formData.postalCode} onChange={handleChange} className="w-full p-2 border rounded" required />
             </form>
           </div>
 
