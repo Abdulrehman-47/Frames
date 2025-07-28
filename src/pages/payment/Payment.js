@@ -40,7 +40,6 @@ const Payment = () => {
       showPopupMessage("Your cart is empty!");
       return;
     }
-
     // Generate plain text order summary with image URLs
     const orderSummaryText = cartItems.map((item, index) => (
       `\n---\nProduct ${index + 1}:\n` +
