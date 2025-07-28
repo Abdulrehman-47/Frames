@@ -40,7 +40,7 @@ const Payment = () => {
       showPopupMessage("Your cart is empty!");
       return;
     }
-    // Generate plain text order summary with image URLs
+
     const orderSummaryText = cartItems.map((item, index) => (
       `\n---\nProduct ${index + 1}:\n` +
       `Name: ${item.name || item.title}\n` +
@@ -86,69 +86,93 @@ const Payment = () => {
       );
   };
 
+  const orderBoxClass = () => {
+    if (cartItems.length === 1) return "h-[280px]";
+    if (cartItems.length <= 4) return "h-auto";
+    return "max-h-[500px] overflow-y-auto scrollbar-thin";
+  };
+
   return (
-    <div className="relative">
+    <div className="relative min-h-screen bg-gray-50 text-gray-800">
       {showPopup && (
-        <div className="fixed top-1/3 left-1/2 transform -translate-x-1/2 z-50">
-          <div className="bg-black text-white text-lg px-6 py-3 rounded shadow-lg animate-fade-in-out">
+        <div className="fixed top-1/4 left-1/2 transform -translate-x-1/2 z-50">
+          <div className="bg-[rgb(38,38,38)] text-white text-base font-medium px-6 py-3 shadow-xl animate-fade-in-out">
             {popupMessage}
           </div>
         </div>
       )}
 
-      <div className="max-w-container mx-auto px-4">
-        <Breadcrumbs title="Payment Gateway" />
-        <div className="pb-10">
-          <p>Thank you for choosing Jersey Frames!</p>
+      <div className="max-w-6xl mx-auto px-4 py-10">
+        <Breadcrumbs title="Billing & Payment" />
+        <h1 className="text-3xl font-bold mb-6">Complete Your Order</h1>
 
-          <div className="mt-6 p-6 border rounded-lg shadow-lg">
+        <div className="grid lg:grid-cols-2 gap-10">
+          {/* Billing Form */}
+          <div className="bg-white rounded-lg shadow-md p-6">
             <h2 className="text-2xl font-semibold mb-4">Billing Information</h2>
-            <form className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              <input type="text" name="fullName" placeholder="Full Name" value={formData.fullName} onChange={handleChange} className="w-full p-2 border rounded" required />
-              <input type="email" name="email" placeholder="Email" value={formData.email} onChange={handleChange} className="w-full p-2 border rounded" required />
-              <input type="text" name="address" placeholder="Address" value={formData.address} onChange={handleChange} className="w-full p-2 border rounded" required />
-              <input type="text" name="apartment" placeholder="Apartment, suite, etc. (optional)" value={formData.apartment} onChange={handleChange} className="w-full p-2 border rounded" />
-              <input type="text" name="city" placeholder="City" value={formData.city} onChange={handleChange} className="w-full p-2 border rounded" required />
-              <input type="text" name="postalCode" placeholder="Postal Code (optional)" value={formData.postalCode} onChange={handleChange} className="w-full p-2 border rounded" />
-              <input type="text" name="phoneNumber" placeholder="Phone Number" value={formData.phoneNumber} onChange={handleChange} className="w-full p-2 border rounded" required />
+            <form className="grid grid-cols-1 gap-5">
+              <input type="text" name="fullName" placeholder="Full Name *" value={formData.fullName} onChange={handleChange} className="input-style" />
+              <input type="email" name="email" placeholder="Email *" value={formData.email} onChange={handleChange} className="input-style" />
+              <input type="text" name="address" placeholder="Address *" value={formData.address} onChange={handleChange} className="input-style" />
+              <input type="text" name="apartment" placeholder="Apartment (optional)" value={formData.apartment} onChange={handleChange} className="input-style" />
+              <div className="grid grid-cols-2 gap-4">
+                <input type="text" name="city" placeholder="City *" value={formData.city} onChange={handleChange} className="input-style" />
+                <input type="text" name="postalCode" placeholder="Postal Code" value={formData.postalCode} onChange={handleChange} className="input-style" />
+              </div>
+              <input type="text" name="phoneNumber" placeholder="Phone Number *" value={formData.phoneNumber} onChange={handleChange} className="input-style" />
             </form>
+            <button onClick={handleSubmit} className="w-full mt-6 bg-blue-600 hover:bg-blue-700 text-white text-lg font-medium py-3 rounded">
+              Complete Purchase
+            </button>
           </div>
 
-          <button
-            onClick={handleSubmit}
-            className="w-52 h-10 bg-primeColor text-white text-lg mt-6 hover:bg-black duration-300"
-          >
-            Complete Purchase
-          </button>
+          {/* Order Summary */}
+          <div className={`bg-white rounded-lg shadow-md p-4 ${orderBoxClass()} transition-all duration-300 ease-in-out`}>
+            <h2 className="text-xl font-semibold mb-2">Order Summary</h2>
+            <div className="border-b border-gray-300 mb-4"></div>
 
-          <div className="mt-8 p-6 border rounded-lg shadow-lg">
-            <h2 className="text-2xl font-semibold mb-4">Order Summary</h2>
-            <div className="space-y-8">
+            <div className="space-y-4 text-base">
               {cartItems.map((item, index) => (
-                <div key={index} className="flex items-center border-b pb-6 last:border-b-0 space-x-8">
-                  <img src={item.image || "https://via.placeholder.com/100"} alt={item.name || "Product Image"} className="w-40 h-40 object-cover rounded-lg" />
-                  <div className="flex-1 space-y-4">
-                    <h3 className="text-lg font-semibold">{item.name || item.title || "Product"}</h3>
-                    <p className="text-gray-600 text-base">Price: <span className="font-medium text-lg">Rs {item.price}</span></p>
-                    <p className="text-gray-600 text-base">Quantity: <span className="font-medium text-lg">{item.quantity}</span></p>
-                    <p className="text-gray-600 text-base">Frame Type: <span className="font-medium text-lg">{item.frameType || "None"}</span></p>
-                    <p className="text-gray-800 font-semibold text-xl">Subtotal: <span className="text-xl">Rs {item.price * item.quantity}</span></p>
+                <div key={index} className="flex items-start gap-4 border-b pb-3 last:border-b-0">
+                  <img
+                    src={item.image || "https://via.placeholder.com/100"}
+                    alt="Product"
+                    className="w-24 h-24 object-cover rounded shadow"
+                  />
+                  <div className="flex-1 space-y-1">
+                    <p className="font-bold text-lg">{item.name || item.title}</p>
+                    <p className="text-gray-700">Price: Rs {item.price}</p>
+                    <p className="text-gray-700">Qty: {item.quantity}</p>
+                    <p className="text-gray-700">Frame: {item.frameType || "None"}</p>
+                    <p className="font-semibold text-gray-900">Subtotal: Rs {item.price * item.quantity}</p>
                   </div>
                 </div>
               ))}
-            </div>
-            <hr className="my-6 border-gray-400" />
-            <div className="text-right mt-4">
-              <h3 className="text-2xl font-semibold">
-                Total Amount: Rs{" "}
-                {cartItems.reduce((total, item) => total + item.price * item.quantity, 0)}
-              </h3>
+              <div className="text-right mt-2">
+                <h3 className="text-lg font-bold text-gray-800">
+                  Total: Rs{" "}
+                  {cartItems.reduce((total, item) => total + item.price * item.quantity, 0)}
+                </h3>
+              </div>
             </div>
           </div>
         </div>
       </div>
 
       <style>{`
+        .input-style {
+          width: 100%;
+          padding: 0.75rem 1rem;
+          border: 1px solid #d1d5db;
+          border-radius: 0.5rem;
+          background-color: #f9fafb;
+          transition: border 0.3s ease;
+        }
+        .input-style:focus {
+          border-color: #3b82f6;
+          outline: none;
+          background-color: #fff;
+        }
         @keyframes fadeInOut {
           0% { opacity: 0; transform: translateY(10px); }
           10% { opacity: 1; transform: translateY(0); }
@@ -157,6 +181,16 @@ const Payment = () => {
         }
         .animate-fade-in-out {
           animation: fadeInOut 3s ease-in-out forwards;
+        }
+        .scrollbar-thin::-webkit-scrollbar {
+          width: 6px;
+        }
+        .scrollbar-thin::-webkit-scrollbar-thumb {
+          background-color: #cbd5e1;
+          border-radius: 4px;
+        }
+        .scrollbar-thin::-webkit-scrollbar-track {
+          background-color: #f1f5f9;
         }
       `}</style>
     </div>
